@@ -10,7 +10,7 @@ require_once __DIR__ . '/wp-load.php';
 echo "<h1>Test de mapping JWT</h1>";
 
 if (!isset($_GET['id_token'])) {
-    echo "<p style='color:red;'>❌ Paramètre id_token manquant</p>";
+    echo "<p style='color:red;'>Paramètre id_token manquant</p>";
     echo "<p>Exemple d'URL : <code>?id_token=eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJzdWIiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW5AZXhhbXBsZS5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZX0.</code></p>";
     exit;
 }
@@ -22,7 +22,7 @@ echo "<pre>" . htmlspecialchars($id_token) . "</pre>";
 // Décoder le JWT
 $parts = explode('.', $id_token);
 if (count($parts) < 2) {
-    echo "<p style='color:red;'>❌ Format JWT invalide</p>";
+    echo "<p style='color:red;'>Format JWT invalide</p>";
     exit;
 }
 
@@ -42,7 +42,7 @@ if ($email) {
     $user = get_user_by('email', $email);
     
     if ($user) {
-        echo "<p style='color:green;'>✅ Utilisateur trouvé !</p>";
+        echo "<p style='color:green;'>Utilisateur trouvé !</p>";
         echo "<pre>";
         echo "ID: " . $user->ID . "\n";
         echo "Login: " . $user->user_login . "\n";
@@ -51,7 +51,7 @@ if ($email) {
         echo "Roles: " . implode(', ', $user->roles) . "\n";
         echo "</pre>";
     } else {
-        echo "<p style='color:orange;'>⚠️ Aucun utilisateur trouvé avec cet email</p>";
+        echo "<p style='color:orange;'>Aucun utilisateur trouvé avec cet email</p>";
         
         // Lister tous les utilisateurs
         echo "<h3>Utilisateurs existants dans la base :</h3>";
@@ -63,7 +63,7 @@ if ($email) {
         echo "</ul>";
     }
 } else {
-    echo "<p style='color:red;'>❌ Pas d'email dans le payload JWT</p>";
+    echo "<p style='color:red;'>Pas d'email dans le payload JWT</p>";
 }
 
 echo "<h2>5. Test de mapping avec username</h2>";
@@ -74,13 +74,13 @@ if ($username) {
     $user = get_user_by('login', $username);
     
     if ($user) {
-        echo "<p style='color:green;'>✅ Utilisateur trouvé par username !</p>";
+        echo "<p style='color:green;'>Utilisateur trouvé par username !</p>";
         echo "<pre>";
         echo "ID: " . $user->ID . "\n";
         echo "Login: " . $user->user_login . "\n";
         echo "Email: " . $user->user_email . "\n";
         echo "</pre>";
     } else {
-        echo "<p style='color:orange;'>⚠️ Aucun utilisateur trouvé avec ce username</p>";
+        echo "<p style='color:orange;'>Aucun utilisateur trouvé avec ce username</p>";
     }
 }
